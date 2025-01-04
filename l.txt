@@ -1,0 +1,41 @@
+//http requset status
+
+if the url status is 400,403,404 : it is a problem with the http request
+if it is 500 series : it is a internal server error
+if it is 200 series : it is successfull.
+
+
+//password salting(happens when a user is registering for the first time)
+
+if a user is entering a common passsword like hello,the hash can be attacked using a rainbow table(hash tables) for coomon passwords but if we add a string like "db" and add to this password,
+the password hash will be changed to a whole new one.
+
+//summary
+
+the user entered password ("hello") is saved and the randomly generated string("abc") is attached to it.
+(the user dosent know the randomly generated string)
+
+
+then the ("helloabc") is converted to a hash("1234#") and saved in the database.
+
+
+the user enters the password("hello"),then the programs search for the salt("abc") assigned to the user and attaches it.(salt = random string)
+
+the string is attached to the password("helloabc") and then coverts it into the hash and that hash is compared with the one with the database and logs him.
+
+//salting rounds(More rounds = more memory)
+
+ data.password = bcrypt.hashSync(data.password, 10);// 10 is recommended.
+
+in this,the hashing runs 10 times and changes it.
+
+the amount can be changed.
+
+//pepper
+
+the attached string is entered to the progam like "!kxy" and added to every password.
+
+the process is like salting but no randomly generated string and it adds to every password not common ones like salting.
+
+
+
