@@ -18,7 +18,7 @@ app.use((req, res, next) => {
 
   if (token != null) {
     token = token.replace("Bearer ", "");
-    jwt.verify(token, "kv-secret-89!", (err, decoded) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
       if (!err) {
         req.user = decoded;
       }
@@ -27,7 +27,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// displaying this in github will be unethical as everyone can access it.(Enviorment variable)
+// displaying this in github will be unethical as everyone can access it.(Enviorment variable),So we link it to the env file.
 let mongoUrl = process.env.MONGO_URL;
 
 mongoose.connect(mongoUrl);

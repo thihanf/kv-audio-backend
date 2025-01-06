@@ -1,6 +1,7 @@
 import User from "../models/user.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 
 export function registerUser(req, res) {
   const data = req.body;
@@ -42,7 +43,7 @@ export function loginUser(req, res) {
             email: user.email,
             role: user.role,
           },
-          "kv-secret-89!" // password for encrypting(token)
+          process.env.JWT_SECRET // password for encrypting(token) which is linked to the env file to hide it from github
         );
         // compares the password recently entered with the database which is currently hashed.
         res.json({ message: "Login succcessful", token: token });
