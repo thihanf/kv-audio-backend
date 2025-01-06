@@ -4,6 +4,10 @@ import mongoose from "mongoose";
 import userRouter from "./routes/userRouter.js";
 import productRouter from "./routes/productRouter.js";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+
+// thsi clones the env file and load the env to access it.
+dotenv.config();
 
 const app = express();
 
@@ -23,8 +27,8 @@ app.use((req, res, next) => {
   next();
 });
 
-let mongoUrl =
-  "mongodb+srv://thihanf2:123%2345%23678%23@cluster0.c9mru.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+// displaying this in github will be unethical as everyone can access it.(Enviorment variable)
+let mongoUrl = process.env.MONGO_URL;
 
 mongoose.connect(mongoUrl);
 
